@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'my_test_one.dart';
 import 'package:flutter_app/welcome_page/my_test_two.dart';
 import 'my_test_three.dart';
+import 'package:flutter_app/test/test_animation.dart';
+import 'package:flutter_app/test/test_small_animation.dart';
+import 'package:flutter_app/test/test_my_animation.dart';
+import 'package:flutter_app/test_progress/_ProgressState.dart';
+
+
 
 void main() => runApp(new MaterialApp(
-        title: '我的测试',
+      title: '我的测试',
         home: new SplashPage(),
-
 //      home: new MyLayoutApp(),
-        ));
+//    home: AnimationTest(),
+//    home: TestAnimation(),
+//      home: AnimationHome(),
+//      home: Center(child: MyProgress(size: new Size(100.0, 20.0))),
+    ));
 //void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {

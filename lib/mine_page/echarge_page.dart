@@ -572,7 +572,7 @@ class _EchargePageState extends State<EchargePageHome> {
               borderRadius: BorderRadius.circular(40.0),
               child: new RaisedButton(
                 padding: const EdgeInsets.only(
-                    left: 110.0, right: 110.0, top: 15.0, bottom: 15.0),
+                    left: 100.0, right: 100.0, top: 10.0, bottom: 10.0),
                 onPressed: _onSubmit,
                 child: new Text(
                   '立即充值',

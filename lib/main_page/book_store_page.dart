@@ -3,6 +3,7 @@ import 'package:flutter_app/main_page/banner_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_app/detail_page/book_detail_page.dart';
 import 'package:flutter_app/rank_page/rank_page.dart';
+import 'package:flutter_app/search_page/search_page.dart';
 import 'dart:async';
 
 //class BookStorePage extends StatelessWidget {
@@ -33,12 +34,20 @@ class BookStorePage extends StatefulWidget {
   }
 }
 
-class _BookStoreState extends State<BookStorePage> {
+class _BookStoreState extends State<BookStorePage>
+    with TickerProviderStateMixin {
   List<String> list = [
     'images/icon_bg_start.png',
     'images/icon_bg_start.png',
     'images/icon_bg_start.png',
   ];
+
+  AnimationController controllerOne;
+  AnimationController controllerTwo;
+  AnimationController controllerThree;
+  CurvedAnimation curvedOne;
+  CurvedAnimation curvedTwo;
+  CurvedAnimation curvedThree;
 
   ///排行的点击事件 0书库 1排行 2男生 3 女生
   void _clikRank(int type) {
@@ -52,13 +61,11 @@ class _BookStoreState extends State<BookStorePage> {
             bgcolor: "#e74c3c",
             textcolor: '#ffffff');
 //        data=BookData('http://bookapp.dtbooking.com//image/%E5%A5%B9%E6%AF%94%E7%83%9F%E8%8A%B1%E8%BF%98%E8%80%80%E7%9C%BC.jpg', '书库');
-        Navigator
-            .push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => new RankPageHome(title: '书库')),
-            )
-            .then((value) {});
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => new RankPageHome(title: '书库')),
+        ).then((value) {});
 //        Navigator.of(context).pushNamed('/warehouse');
 
         break;
@@ -71,13 +78,11 @@ class _BookStoreState extends State<BookStorePage> {
             bgcolor: "#e74c3c",
             textcolor: '#ffffff');
 
-        Navigator
-            .push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => new RankPageHome(title: '排行')),
-            )
-            .then((value) {});
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => new RankPageHome(title: '排行')),
+        ).then((value) {});
         break;
       case 2:
         Fluttertoast.showToast(
@@ -87,13 +92,11 @@ class _BookStoreState extends State<BookStorePage> {
             timeInSecForIos: 1,
             bgcolor: "#e74c3c",
             textcolor: '#ffffff');
-        Navigator
-            .push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => new RankPageHome(title: '男生')),
-            )
-            .then((value) {});
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => new RankPageHome(title: '男生')),
+        ).then((value) {});
         break;
       case 3:
         Fluttertoast.showToast(
@@ -103,13 +106,11 @@ class _BookStoreState extends State<BookStorePage> {
             timeInSecForIos: 1,
             bgcolor: "#e74c3c",
             textcolor: '#ffffff');
-        Navigator
-            .push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => new RankPageHome(title: '女生')),
-            )
-            .then((value) {});
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => new RankPageHome(title: '女生')),
+        ).then((value) {});
         break;
       default:
     }
@@ -129,6 +130,18 @@ class _BookStoreState extends State<BookStorePage> {
   @override
   void initState() {
     super.initState();
+    controllerOne =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    controllerTwo =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    controllerThree =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    curvedOne =
+        new CurvedAnimation(parent: controllerOne, curve: Curves.linear);
+    curvedTwo =
+        new CurvedAnimation(parent: controllerTwo, curve: Curves.linear);
+    curvedThree = new CurvedAnimation(
+        parent: controllerThree, curve: Curves.linear); //模仿小球自由落体运动轨迹
     data = BookData(
         'http://bookapp.dtbooking.com//image/%E5%A5%B9%E6%AF%94%E7%83%9F%E8%8A%B1%E8%BF%98%E8%80%80%E7%9C%BC.jpg',
         '书库');
@@ -136,21 +149,35 @@ class _BookStoreState extends State<BookStorePage> {
   }
 
   void init() {
-    row = Row(
-      children: <Widget>[
-        Expanded(child: new TextField()),
-        Column(
+    row = Padding(
+        padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
+        child: Row(
           children: <Widget>[
-            Image(
-              image: AssetImage('images/main_icon/icon_store.png'),
-              width: 33.0,
-              height: 33.0,
-            ),
-            Text('书架', style: new TextStyle(fontSize: 15.0))
+            Expanded(
+                child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => new SearchPage()),
+                ).then((value) {});
+              },
+              child: Image.asset(
+                "images/main_icon/icon_search_and_txt.png",
+                height: 44.0,
+              ),
+            )),
+            Column(
+              children: <Widget>[
+                Image(
+                  image: AssetImage('images/main_icon/icon_store.png'),
+                  width: 33.0,
+                  height: 33.0,
+                ),
+                Text('书架', style: new TextStyle(fontSize: 12.0))
+              ],
+            )
           ],
-        )
-      ],
-    );
+        ));
 
     titles = Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -233,11 +260,27 @@ class _BookStoreState extends State<BookStorePage> {
                   '每周精选',
                   style: new TextStyle(fontSize: 15.0),
                 ),
-                RaisedButton(
-                  child: Text('换一换'),
-                  onPressed: null,
-                  disabledColor: Colors.white,
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text('换一换'),
+                      onPressed: () {
+                        controllerOne.repeat();
+                      },
+                      splashColor: Colors.white,
+                      disabledColor: Colors.white,
+                    ),
+                    RotationTransition(
+                      turns: curvedOne,
+                      child: Image.asset(
+                        'images/icon_refresh.png',
+                        width: 12.0,
+                        height: 12.0,
+                      ),
+                    ),
+                  ],
+                )
               ],
             )),
         Container(
@@ -247,15 +290,13 @@ class _BookStoreState extends State<BookStorePage> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    Navigator
-                        .push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => new BookDetailPage(
-                                    data: data,
-                                  )),
-                        )
-                        .then((value) {});
+                    Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new BookDetailPage(
+                                data: data,
+                              )),
+                    ).then((value) {});
                   },
                   child: Image(
                     image: AssetImage('images/main_icon/icon_demo.jpg'),
@@ -309,14 +350,30 @@ class _BookStoreState extends State<BookStorePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  '每周精选',
+                  '男生精选',
                   style: new TextStyle(fontSize: 15.0),
                 ),
-                RaisedButton(
-                  child: Text('换一换'),
-                  onPressed: null,
-                  disabledColor: Colors.white,
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text('换一换'),
+                      onPressed: () {
+                        controllerTwo.repeat();
+                      },
+                      splashColor: Colors.white,
+                      disabledColor: Colors.white,
+                    ),
+                    RotationTransition(
+                      turns: curvedTwo,
+                      child: Image.asset(
+                        'images/icon_refresh.png',
+                        width: 12.0,
+                        height: 12.0,
+                      ),
+                    ),
+                  ],
+                )
               ],
             )),
         Container(
@@ -375,14 +432,30 @@ class _BookStoreState extends State<BookStorePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  '每周精选',
+                  '女生精选',
                   style: new TextStyle(fontSize: 15.0),
                 ),
-                RaisedButton(
-                  child: Text('换一换'),
-                  onPressed: null,
-                  disabledColor: Colors.white,
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text('换一换'),
+                      onPressed: () {
+                        controllerThree.repeat();
+                      },
+                      splashColor: Colors.white,
+                      disabledColor: Colors.white,
+                    ),
+                    RotationTransition(
+                      turns: curvedThree,
+                      child: Image.asset(
+                        'images/icon_refresh.png',
+                        width: 12.0,
+                        height: 12.0,
+                      ),
+                    ),
+                  ],
+                )
               ],
             )),
         Container(
@@ -435,17 +508,20 @@ class _BookStoreState extends State<BookStorePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          row,
-          new BannerWidget(list),
-          titles,
-          listOne,
-          listMale,
-          listFemale
-        ],
-      ),
-    );
+    return Column(children: <Widget>[
+      row,
+      Expanded(
+          child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            new BannerWidget(list),
+            titles,
+            listOne,
+            listMale,
+            listFemale
+          ],
+        ),
+      ))
+    ]);
   }
 }

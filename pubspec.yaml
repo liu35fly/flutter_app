@@ -39,6 +39,7 @@ flutter:
     - images/icon_banner.jpg
     - images/logo_320.png
     - images/icon_right.png
+    - images/icon_refresh.png
 
     - images/gender_bg/icon_female.webp
     - images/gender_bg/icon_male.webp
@@ -51,6 +52,7 @@ flutter:
     - images/main_icon/icon_mine_selected.png
     - images/main_icon/icon_mine_selected_no.png
     - images/main_icon/icon_store.png
+    - images/main_icon/icon_search_and_txt.png
 
     - images/main_icon/icon_female_small.png
     - images/main_icon/icon_male_small.png
