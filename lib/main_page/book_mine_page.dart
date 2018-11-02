@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/mine_page/echarge_page.dart';
+import 'package:flutter_app/login_page/LoginPage.dart';
 
 class BookMinePage extends StatelessWidget {
   @override
@@ -29,15 +30,23 @@ class MinePage extends StatelessWidget {
               height: 200.0,
               color: Colors.blue,
             ),
-            Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  child: icon,
-                ),
-                name
-              ],
-            )
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new LoginPage()),
+                  ).then((value) {});
+                },
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: icon,
+                    ),
+                    name
+                  ],
+                ))
           ],
         ),
         Container(
@@ -69,14 +78,12 @@ class MinePage extends StatelessWidget {
                   child: Material(
                       borderRadius: BorderRadius.circular(20.0),
                       child: new RaisedButton(
-                        onPressed: (){
-                          Navigator
-                              .push(
+                        onPressed: () {
+                          Navigator.push(
                             context,
                             new MaterialPageRoute(
                                 builder: (context) => new EchargePage()),
-                          )
-                              .then((value) {});
+                          ).then((value) {});
                         },
                         child: new Text(
                           '充值',

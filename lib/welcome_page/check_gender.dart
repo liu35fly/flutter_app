@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main_page/main_page.dart';
 
-
-class CheckGenderHome extends StatelessWidget{
+class CheckGenderHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '主页',
-      theme:  ThemeData(primarySwatch: Colors.blue),
-      home: CheckGenderPage() ,
-      routes: <String, WidgetBuilder>{
-        '/main': (BuildContext context) => new MainPage()
-      });
-
+        title: '主页',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: CheckGenderPage(),
+        routes: <String, WidgetBuilder>{
+          '/main': (BuildContext context) => new MainPage()
+        });
   }
 }
 
@@ -27,31 +25,30 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
   var maleIsClik = true;
   var femaleIsClik = true;
 
-  var submitColor=Colors.grey;
+  var submitColor = Colors.grey;
 
   void _changeMale() {
     setState(() {
       maleIsClik = false;
       femaleIsClik = true;
-      submitColor=Colors.green;
+      submitColor = Colors.green;
     });
   }
 
   void _changeFemale() {
     setState(() {
-      submitColor=Colors.green;
+      submitColor = Colors.green;
       maleIsClik = true;
       femaleIsClik = false;
     });
   }
 
-  void _submit(){
+  void _submit() {
     setState(() {
-      if(maleIsClik&&femaleIsClik){
+      if (maleIsClik && femaleIsClik) {
         return;
       }
       Navigator.of(context).pushReplacementNamed('/main');
-
     });
   }
 
@@ -152,43 +149,31 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
               ],
             )),
         Container(
-            padding: const EdgeInsets.only(top: 80.0),
-            child: Material(
-//              color: Colors.green,
-//              decoration: new BoxDecoration(
-//                color: Colors.blue,
-//                border: new Border.all(
-//                  color: Colors.yellow,
-//                  width: 5.0,
-//                ),
-//                borderRadius: new BorderRadius.all(new Radius.circular(50.0)),
-//                gradient:
-//                    new LinearGradient(colors: [Colors.blue, Colors.green]),
-//              ),
-              borderRadius: BorderRadius.circular(40.0),
-              child: new RaisedButton(
-                padding: const EdgeInsets.only(
-                    left: 110.0, right: 110.0, top: 15.0, bottom: 15.0),
-                onPressed: _submit,
-                child: new Text(
-                  '开启CC阅读',
-                ),
-                textColor: Colors.white,
-                disabledTextColor: Colors.white,
-                disabledColor: Colors.green,
-                colorBrightness: Brightness.dark,
-                splashColor: Colors.green,
-                color: submitColor,
-                highlightElevation: 5.0,
-                // 高亮时的浮动距离（可以尝试将该值设置的比elevation小，看看体验）
-                disabledElevation: 50.0,
-//                shape: new Border.all(
-//                  // 设置边框样式
-//                  color: Colors.green,
-//                  width: 4.0,
-//                  style: BorderStyle.solid,
-//                ),
+            padding: const EdgeInsets.only(top: 80.0,left: 15.0,right: 15.0),
+            child: new RaisedButton(
+              padding: const EdgeInsets.only(
+                   top: 10.0, bottom: 10.0),
+              onPressed: _submit,
+              child: Center(
+                  child: new Text(
+                '开启CC阅读',
+              )),
+              textColor: Colors.white,
+//                disabledTextColor: Colors.white,
+//                disabledColor: Colors.green,
+              colorBrightness: Brightness.light,
+              splashColor: Colors.green,
+              color: submitColor,
+              shape: RoundedRectangleBorder(
+//        side: new BorderSide(
+//          color: Colors.red[300],
+//          width: 0.0,
+//        ),
+                borderRadius: new BorderRadius.circular(40.0),
               ),
+//                highlightElevation: 5.0,
+              // 高亮时的浮动距离（可以尝试将该值设置的比elevation小，看看体验）
+//                disabledElevation: 50.0,
             )),
       ],
     );
