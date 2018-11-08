@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter/animation.dart';
+import 'dart:async';
+import 'dart:math';
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,27 +34,54 @@ class LoginHome extends StatefulWidget {
   }
 }
 
-class _LoginPageState extends State<LoginHome> {
+class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
   final TextEditingController _controllerPhone = new TextEditingController();
   final TextEditingController _controller = new TextEditingController();
   final FocusNode _fnPhone = new FocusNode();
   final FocusNode _fn = new FocusNode();
 
+  var tip = "获取验证码";
+
+  AnimationController controller;
+  Animation<int> tween;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 60000));
+
+    controller.value = 0.0;
+    tween = IntTween(begin: 60, end: 0).animate(controller)
+      ..addListener(() {
+        setState(() {
+          tip = tween.value.toString() + "s";
+        });
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          print("completed");
+          controller.reset();
+          setState(() {
+            tip = "获取验证码";
+            print(tip);
+          });
+        } else if (status == AnimationStatus.dismissed) {
+//          controller.forward();
+          print("dismissed");
+        }
+      });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
       children: <Widget>[
         createTitle(),
         Padding(
@@ -60,9 +91,17 @@ class _LoginPageState extends State<LoginHome> {
         Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
           child: createSubmit(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 80.0),
+          child: createOtherTitle(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 30.0),
+          child: createOther(),
         )
       ],
-    );
+    ));
   }
 
   Widget createTitle() {
@@ -121,10 +160,10 @@ class _LoginPageState extends State<LoginHome> {
               ),
             )),
             OutlineButton(
-              onPressed: () {},
+              onPressed: _clikVerification,
               borderSide: BorderSide(color: Colors.green, width: 1.0),
               child: Text(
-                "获取验证码",
+                tip,
                 style: TextStyle(color: Colors.green),
               ),
             )
@@ -159,4 +198,74 @@ class _LoginPageState extends State<LoginHome> {
     );
   }
 
+  Widget createOtherTitle() {
+    return Row(
+      children: <Widget>[
+        Expanded(
+            child: Container(
+          width: 100.0,
+          height: 1.0,
+          color: Colors.grey,
+        )),
+        Padding(
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+            child: Text("第三方登录")),
+        Expanded(
+            child: Container(
+          width: 100.0,
+          height: 1.0,
+          color: Colors.grey,
+        ))
+      ],
+    );
+  }
+
+  Widget createOther() {
+    return Row(
+      children: <Widget>[
+        Expanded(
+            child: Center(
+          child: Image.asset("images/login_icon/icon_qq_round.png",
+              width: 60.0, height: 60.0),
+        )),
+        Expanded(
+            child: Center(
+          child: Image.asset("images/login_icon/icon_wechat_round.png",
+              width: 60.0, height: 60.0),
+        )),
+        Expanded(
+            child: Center(
+          child: Image.asset("images/login_icon/icon_weibo_round.png",
+              width: 60.0, height: 60.0),
+        ))
+      ],
+    );
+  }
+
+  void _clikVerification() {
+//    controller.addListener(() {
+//      setState(() {
+//        print(((controller.value) * 60));
+//        if (((controller.value) * 60) > 59.9) {
+//          tip = "获取验证码";
+//          print(tip);
+//          controller.dispose();
+//        } else {
+//          tip = ((controller.value) * 60).toInt().toString() + "s";
+//        }
+//      });
+//    });
+//    dodelay(controller, 0);
+    controller.forward();
+//    controller.reverse();
+  }
+
+  void dodelay(AnimationController _animationControllers, int delay) async {
+    Future.delayed(Duration(milliseconds: delay), () {
+//      setState(() {
+//        tip = (_animationControllers.value * 6000).toString() + "s";
+//      });
+      _animationControllers..repeat().orCancel;
+    });
+  }
 }

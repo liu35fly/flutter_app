@@ -75,6 +75,10 @@ flutter:
     - images/detail_icon/icon_green_info.png
     - images/detail_icon/icon_green_book.png
 
+    - images/login_icon/icon_qq_round.png
+    - images/login_icon/icon_wechat_round.png
+    - images/login_icon/icon_weibo_round.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
