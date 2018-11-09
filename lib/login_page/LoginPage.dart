@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/animation.dart';
-import 'dart:async';
-import 'dart:math';
+
+import 'dart:convert';
+import 'package:flutter_app/data/User.dart';
+import 'package:flutter_app/file_utils/FileManager.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -181,7 +183,7 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
   Widget createSubmit() {
     return RaisedButton(
       padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-      onPressed: () {},
+      onPressed: _clikSubmit,
       color: Colors.green,
       shape: RoundedRectangleBorder(
 //        side: new BorderSide(
@@ -243,29 +245,59 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
   }
 
   void _clikVerification() {
-//    controller.addListener(() {
-//      setState(() {
-//        print(((controller.value) * 60));
-//        if (((controller.value) * 60) > 59.9) {
-//          tip = "获取验证码";
-//          print(tip);
-//          controller.dispose();
-//        } else {
-//          tip = ((controller.value) * 60).toInt().toString() + "s";
-//        }
-//      });
-//    });
-//    dodelay(controller, 0);
     controller.forward();
-//    controller.reverse();
+//    print(FileManager.readCounter().toString());
+    FileManager.readCounter().then((value) {
+      print(value);
+    });
   }
 
-  void dodelay(AnimationController _animationControllers, int delay) async {
-    Future.delayed(Duration(milliseconds: delay), () {
-//      setState(() {
-//        tip = (_animationControllers.value * 6000).toString() + "s";
-//      });
-      _animationControllers..repeat().orCancel;
+  void _clikSubmit() {
+    setState(() {
+      if (_controllerPhone.text.length == 0) {
+        Fluttertoast.showToast(
+            msg: "请输入电话号码",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIos: 1,
+            bgcolor: "#e74c3c",
+            textcolor: '#ffffff');
+        return;
+      }
+      if (_controllerPhone.text.length != 11) {
+        Fluttertoast.showToast(
+            msg: "手机号码格式错误",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIos: 1,
+            bgcolor: "#e74c3c",
+            textcolor: '#ffffff');
+        return;
+      }
+
+      if (_controller.text.length == 0) {
+        Fluttertoast.showToast(
+            msg: "请输入验证码",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIos: 1,
+            bgcolor: "#e74c3c",
+            textcolor: '#ffffff');
+        return;
+      }
+
+      Fluttertoast.showToast(
+          msg: "您输入的电话是：${_controllerPhone.text}\n 验证码是：${_controller.text}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff');
+      User user = User(0, "name_0", _controllerPhone.text, _controller.text);
+      String json = jsonEncode(user);
+      FileManager.incremenCounter(json).then((value) {
+        Navigator.pop(context);
+      });
     });
   }
 }
