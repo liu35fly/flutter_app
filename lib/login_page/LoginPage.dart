@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/animation.dart';
 
-import 'dart:convert';
-import 'package:flutter_app/data/User.dart';
-import 'package:flutter_app/file_utils/FileManager.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:flutter_app/data/user.dart';
+import 'package:flutter_app/file_utils/file_manager.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -76,11 +78,6 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
@@ -104,6 +101,16 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
         )
       ],
     ));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget createTitle() {

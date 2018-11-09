@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/main_page/banner_view.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:flutter_app/main_page/banner_view.dart';
 import 'package:flutter_app/detail_page/book_detail_page.dart';
 import 'package:flutter_app/rank_page/rank_page.dart';
 import 'package:flutter_app/search_page/search_page.dart';

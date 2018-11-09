@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/services.dart';
 import 'check_gender.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 class SplashPage extends StatelessWidget {
   @override

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'my_test_one.dart';
+
 import 'package:flutter_app/welcome_page/my_test_two.dart';
-import 'my_test_three.dart';
+
 import 'package:flutter_app/test/test_animation.dart';
 import 'package:flutter_app/test/test_small_animation.dart';
 import 'package:flutter_app/test/test_my_animation.dart';
 import 'package:flutter_app/test_progress/_ProgressState.dart';
+import 'my_test_three.dart';
+import 'my_test_one.dart';
 
 
 

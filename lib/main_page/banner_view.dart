@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_app/detail_page/book_detail_page.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:flutter_app/detail_page/book_detail_page.dart';
 
 class BannerWidget extends StatefulWidget {
   final List<String> images;

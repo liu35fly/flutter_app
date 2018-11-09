@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter/material.dart';
+
 import 'package:flutter_app/detail_page/book_detail_page.dart';
 
 class SearchPage extends StatelessWidget {
