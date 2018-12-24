@@ -1,11 +1,22 @@
 import 'dart:async';
-import 'check_gender.dart';
+
+import 'package:fluro/fluro.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'check_gender.dart';
+import 'package:flutter_app/route_config/application.dart';
+import 'package:flutter_app/route_config/routes.dart';
 
 class SplashPage extends StatelessWidget {
+
+  SplashPage(){
+    final router = new Router();
+    Routes.configureRoutes(router);
+    Application.router = router;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,9 +25,11 @@ class SplashPage extends StatelessWidget {
         home: SplashHomePage(
           title: '叠层布局',
         ),
-        routes: <String, WidgetBuilder>{
-          '/home': (BuildContext context) => new CheckGenderHome()
-        });
+//        routes: <String, WidgetBuilder>{
+//          '/home': (BuildContext context) => new CheckGenderHome()
+//        }
+      onGenerateRoute: Application.router.generator,
+        );
   }
 }
 
@@ -32,6 +45,9 @@ class SplashHomePage extends StatefulWidget {
 }
 
 class _SplashHomePageState extends State<SplashHomePage> {
+  _SplashHomePageState() {
+  }
+
   startTime() async {
     //设置启动图生效时间
     var _duration = new Duration(seconds: 3);
@@ -39,7 +55,12 @@ class _SplashHomePageState extends State<SplashHomePage> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/home');
+//    Navigator.of(context).pushReplacementNamed('/home');
+
+//    Application.router
+//        .navigateTo(context, "/check", transition: TransitionType.native)
+//        .then((result) {});
+    Application.router.navigateTo(context,"/check",clearStack: true);
   }
 
   @override

@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:fluro/fluro.dart';
+
 import 'package:flutter_app/main_page/book_shelf_page.dart';
 import 'package:flutter_app/main_page/book_store_page.dart';
 import 'package:flutter_app/main_page/book_mine_page.dart';
 import 'package:flutter_app/detail_page/book_detail_page.dart';
 
+import 'package:flutter_app/route_config/application.dart';
+import 'package:flutter_app/route_config/routes.dart';
+
 class MainPage extends StatefulWidget {
+
+  MainPage(){
+//    final router = new Router();
+//    Routes.configureRoutes(router);
+//    Application.router = router;
+  }
+
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return new _MainPageState();
   }
 }
@@ -126,6 +137,7 @@ class _MainPageState extends State<MainPage> {
 //      routes: <String, WidgetBuilder>{
 //        '/warehouse': (BuildContext context) => new BookDetailPage()
 //      },
+//      onGenerateRoute: Application.router.generator,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/main_page/main_page.dart';
+import 'package:flutter_app/route_config/application.dart';
 
 class CheckGenderHome extends StatelessWidget {
   @override
@@ -9,9 +10,11 @@ class CheckGenderHome extends StatelessWidget {
         title: '主页',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: CheckGenderPage(),
-        routes: <String, WidgetBuilder>{
-          '/main': (BuildContext context) => new MainPage()
-        });
+//        routes: <String, WidgetBuilder>{
+//          '/main': (BuildContext context) => new MainPage()
+//        }
+      onGenerateRoute: Application.router.generator,
+        );
   }
 }
 
@@ -49,7 +52,8 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
       if (maleIsClik && femaleIsClik) {
         return;
       }
-      Navigator.of(context).pushReplacementNamed('/main');
+//      Navigator.of(context).pushReplacementNamed('/main');
+      Application.router.navigateTo(context, "/mainPage",clearStack: true);
     });
   }
 

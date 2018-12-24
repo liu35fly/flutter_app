@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/mine_page/echarge_page.dart';
 import 'package:flutter_app/login_page/LoginPage.dart';
+import 'package:flutter_app/route_config/application.dart';
 
 class BookMinePage extends StatelessWidget {
   @override
@@ -33,11 +34,12 @@ class MinePage extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => new LoginPage()),
-                  ).then((value) {});
+//                  Navigator.push(
+//                    context,
+//                    new MaterialPageRoute(
+//                        builder: (context) => new LoginPage()),
+//                  ).then((value) {});
+                  Application.router.navigateTo(context, "/loginPage");
                 },
                 child: Column(
                   children: <Widget>[
@@ -80,11 +82,13 @@ class MinePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                       child: new RaisedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) => new EchargePage()),
-                          ).then((value) {});
+//                          Navigator.push(
+//                            context,
+//                            new MaterialPageRoute(
+//                                builder: (context) => new EchargePage()),
+//                          ).then((value) {});
+
+                          Application.router.navigateTo(context, "/echargePage");
                         },
                         child: new Text(
                           '充值',
