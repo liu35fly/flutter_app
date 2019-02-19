@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-//class DetailPage extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    // TODO: implement build
-//    return Scaffold(
-//      body: DetailPageWidget(),
-//    );
-//  }
-//}
-
 class BookData {
   final String url;
   final String name;
@@ -19,9 +9,13 @@ class BookData {
 }
 
 class BookDetailPage extends StatefulWidget {
-  final BookData data;
+//  final BookData data;
 
-  BookDetailPage({Key key, @required this.data}) : super(key: key);
+//  BookDetailPage({Key key, @required this.data}) : super(key: key);
+
+  BookDetailPage({String bookId="0"}) : this.bookId=bookId;
+
+  final String bookId;
 
   @override
   State<StatefulWidget> createState() {
@@ -222,7 +216,7 @@ class BookDetailHome extends State<BookDetailPage> {
   void initState() {
     super.initState();
 
-    data = widget.data;
+    data = widget.bookId;
 
     title = Row(
       mainAxisAlignment: MainAxisAlignment.start,

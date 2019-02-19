@@ -539,8 +539,8 @@ class _EchargePageState extends State<EchargePageHome> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIos: 1,
-        bgcolor: "#e74c3c",
-        textcolor: '#ffffff');
+        backgroundColor: Color(0xe74c3c),
+        textColor: Color(0xffffff));
   }
 
   @override

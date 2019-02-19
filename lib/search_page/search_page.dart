@@ -190,7 +190,7 @@ class SearchState extends State<SearchPageState> {
           Navigator.push(
             context,
             new MaterialPageRoute(
-                builder: (context) => new BookDetailPage(data: data)),
+                builder: (context) => new BookDetailPage(bookId: "0",)),
           ).then((value) {});
         },
         child: Padding(

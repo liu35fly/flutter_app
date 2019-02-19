@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
 
 class RankPageHome extends StatelessWidget {
-  final String title;
+//  final String title;
 
-  RankPageHome({Key key, @required this.title}) : super(key: key);
+//  RankPageHome({Key key, @required this.title}) : super(key: key);
+
+  RankPageHome({int type = 0}) : this.type = type;
+
+  final int type;
+
+  String getTitle(int type) {
+    switch (type) {
+      case 0:
+        return "书架";
+      case 1:
+        return "排行";
+      case 2:
+        return "男生";
+      case 3:
+        return "女生";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +28,7 @@ class RankPageHome extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text(
-          title,
+          getTitle(type),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -57,7 +74,11 @@ class RankPageState extends State<RankPage> {
                 Container(
                   child: Text(
                     '岁岁平安',
-                    style: TextStyle(color: Colors.black, fontSize: 21.0,fontStyle: FontStyle.normal,decorationStyle:TextDecorationStyle.solid),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 21.0,
+                        fontStyle: FontStyle.normal,
+                        decorationStyle: TextDecorationStyle.solid),
                   ),
                 ),
                 Container(
@@ -77,11 +98,14 @@ class RankPageState extends State<RankPage> {
                     Material(
                       borderRadius: BorderRadius.circular(15.0),
                       color: Colors.green,
-                      child:
-                      Padding(padding: const EdgeInsets.only(top: 1.0,bottom: 1.0,left: 10.0,right: 10.0),child: Text(
-                        '都市',
-                        style: TextStyle(color: Colors.white, fontSize: 11.0),
-                      )),
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 1.0, bottom: 1.0, left: 10.0, right: 10.0),
+                          child: Text(
+                            '都市',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 11.0),
+                          )),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 17.0),

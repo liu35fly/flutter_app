@@ -267,8 +267,8 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
         return;
       }
       if (_controllerPhone.text.length != 11) {
@@ -277,8 +277,8 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
         return;
       }
 
@@ -288,8 +288,8 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
         return;
       }
 
@@ -298,8 +298,8 @@ class _LoginPageState extends State<LoginHome> with TickerProviderStateMixin {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIos: 1,
-          bgcolor: "#e74c3c",
-          textcolor: '#ffffff');
+          backgroundColor: Color(0xe74c3c),
+          textColor: Color(0xffffff));
       User user = User(0, "name_0", _controllerPhone.text, _controller.text);
       String json = jsonEncode(user);
       FileManager.incremenCounter(json).then((value) {

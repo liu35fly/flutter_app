@@ -60,14 +60,17 @@ class _BookStoreState extends State<BookStorePage>
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
 //        data=BookData('http://bookapp.dtbooking.com//image/%E5%A5%B9%E6%AF%94%E7%83%9F%E8%8A%B1%E8%BF%98%E8%80%80%E7%9C%BC.jpg', '书库');
         Navigator.push(
-          context,
-          new MaterialPageRoute(
-              builder: (context) => new RankPageHome(title: '书库')),
-        ).then((value) {});
+            context,
+            new MaterialPageRoute(
+              builder: (context) => new RankPageHome(type: 0),
+//            builder: (context) => new RankPageHome(title: '书库')),
+            )
+//                .then((value) {})
+            );
 //        Navigator.of(context).pushNamed('/warehouse');
 
         break;
@@ -77,13 +80,16 @@ class _BookStoreState extends State<BookStorePage>
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
 
         Navigator.push(
           context,
           new MaterialPageRoute(
-              builder: (context) => new RankPageHome(title: '排行')),
+              builder: (context) => new RankPageHome(
+                    type: 1,
+                  )),
+//            builder: (context) => new RankPageHome(title: '排行')),
         ).then((value) {});
         break;
       case 2:
@@ -92,13 +98,16 @@ class _BookStoreState extends State<BookStorePage>
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
         Navigator.push(
-          context,
-          new MaterialPageRoute(
-              builder: (context) => new RankPageHome(title: '男生')),
-        ).then((value) {});
+            context,
+            new MaterialPageRoute(
+              builder: (context) => new RankPageHome(
+                    type: 2,
+                  ),
+            ));
+//                .then((value) {});
         break;
       case 3:
         Fluttertoast.showToast(
@@ -106,13 +115,15 @@ class _BookStoreState extends State<BookStorePage>
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIos: 1,
-            bgcolor: "#e74c3c",
-            textcolor: '#ffffff');
+            backgroundColor: Color(0xe74c3c),
+            textColor: Color(0xffffff));
         Navigator.push(
-          context,
-          new MaterialPageRoute(
-              builder: (context) => new RankPageHome(title: '女生')),
-        ).then((value) {});
+            context,
+            new MaterialPageRoute(
+                builder: (context) => new RankPageHome(
+                      type: 3,
+                    )));
+//        .then((value){});
         break;
       default:
     }
@@ -296,7 +307,7 @@ class _BookStoreState extends State<BookStorePage>
                       context,
                       new MaterialPageRoute(
                           builder: (context) => new BookDetailPage(
-                                data: data,
+                                bookId: "0",
                               )),
                     ).then((value) {});
                   },

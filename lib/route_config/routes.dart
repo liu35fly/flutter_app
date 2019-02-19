@@ -9,6 +9,7 @@ class Routes {
   static String mainPage = "/mainPage";
   static String echargePage = "/echargePage";
   static String loginPage = "/loginPage";
+  static String detailPage = "/detailPage";
 
   static void configureRoutes(Router router) {
     router.notFoundHandler = new Handler(

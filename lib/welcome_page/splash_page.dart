@@ -20,14 +20,11 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'demo首页',
+        title: '首页',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: SplashHomePage(
-          title: '叠层布局',
+          title: '首页',
         ),
-//        routes: <String, WidgetBuilder>{
-//          '/home': (BuildContext context) => new CheckGenderHome()
-//        }
       onGenerateRoute: Application.router.generator,
         );
   }
@@ -55,11 +52,6 @@ class _SplashHomePageState extends State<SplashHomePage> {
   }
 
   void navigationPage() {
-//    Navigator.of(context).pushReplacementNamed('/home');
-
-//    Application.router
-//        .navigateTo(context, "/check", transition: TransitionType.native)
-//        .then((result) {});
     Application.router.navigateTo(context,"/check",clearStack: true);
   }
 
@@ -101,11 +93,6 @@ class _SplashHomePageState extends State<SplashHomePage> {
                 fontStyle: FontStyle.italic),
           ),
         ),
-//        Container(
-////          decoration: BoxDecoration(
-////          ),
-//          child: new Image.asset('images/icon_logo.png'),
-//        )
       ],
     );
 
@@ -121,15 +108,6 @@ class TutorialHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-//      appBar: new AppBar(
-//        leading: new IconButton(
-//            icon: new Icon(Icons.menu), tooltip: '菜单', onPressed: null),
-//        title: new Text('测试二title'),
-//        actions: <Widget>[
-//          new IconButton(
-//              icon: new Icon(Icons.search), tooltip: '搜索', onPressed: null)
-//        ],
-//      ),
       body: Center(
         child: new Container(
           child: Padding(

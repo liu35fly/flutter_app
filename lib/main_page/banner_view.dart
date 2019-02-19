@@ -78,16 +78,17 @@ class _BannerWidgetState extends State<BannerWidget> {
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIos: 1,
-                    bgcolor: "#e74c3c",
-                    textcolor: '#ffffff');
+                    backgroundColor: Color(0xe74c3c),
+                    textColor: Color(0xffffff));
                 Navigator
                     .push(
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new BookDetailPage(
-                        data: BookData(
-                            'http://bookapp.dtbooking.com//image/%E5%A5%B9%E6%AF%94%E7%83%9F%E8%8A%B1%E8%BF%98%E8%80%80%E7%9C%BC.jpg',
-                            '书库'),
+//                        data: BookData(
+//                            'http://bookapp.dtbooking.com//image/%E5%A5%B9%E6%AF%94%E7%83%9F%E8%8A%B1%E8%BF%98%E8%80%80%E7%9C%BC.jpg',
+//                            '书库'),
+                        bookId: "0",
                       )),
                 )
                     .then((value) {});
