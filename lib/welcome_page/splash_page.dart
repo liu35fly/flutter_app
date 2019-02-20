@@ -1,17 +1,19 @@
 import 'dart:async';
 
-import 'package:fluro/fluro.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:fluro/fluro.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'check_gender.dart';
 import 'package:flutter_app/route_config/application.dart';
 import 'package:flutter_app/route_config/routes.dart';
+import 'package:flutter_app/utils/share_preferences_manager.dart';
+import 'package:flutter_app/utils/commen_tip.dart';
 
 class SplashPage extends StatelessWidget {
-
-  SplashPage(){
+  SplashPage() {
     final router = new Router();
     Routes.configureRoutes(router);
     Application.router = router;
@@ -20,13 +22,13 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: '首页',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: SplashHomePage(
         title: '首页',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: SplashHomePage(
-          title: '首页',
-        ),
+      ),
       onGenerateRoute: Application.router.generator,
-        );
+    );
   }
 }
 
@@ -42,8 +44,9 @@ class SplashHomePage extends StatefulWidget {
 }
 
 class _SplashHomePageState extends State<SplashHomePage> {
-  _SplashHomePageState() {
-  }
+  _SplashHomePageState() {}
+
+  var isSelected = false;
 
   startTime() async {
     //设置启动图生效时间
@@ -51,14 +54,26 @@ class _SplashHomePageState extends State<SplashHomePage> {
     return new Timer(_duration, navigationPage);
   }
 
+  _checkGender() async {
+    var prefs = await SharePrefercencesManager.instance.getSharePre();
+    if ((prefs.getInt(CommenTip.shareSelectedGender) ?? -1) != -1) {
+      isSelected = true;
+    }
+  }
+
   void navigationPage() {
-    Application.router.navigateTo(context,"/check",clearStack: true);
+    if (isSelected) {
+      Application.router.navigateTo(context, "/mainPage", clearStack: true);
+      return;
+    }
+    Application.router.navigateTo(context, "/check", clearStack: true);
   }
 
   @override
   void initState() {
     super.initState();
     startTime();
+    _checkGender();
   }
 
   @override
@@ -71,7 +86,6 @@ class _SplashHomePageState extends State<SplashHomePage> {
 //          backgroundImage: AssetImage('images/icon_bg_start.png'),
 //          radius: 100.0,
             ),
-
         Container(
           padding: const EdgeInsets.only(bottom: 56.0),
           alignment: Alignment.bottomCenter,

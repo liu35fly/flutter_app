@@ -22,6 +22,7 @@ dependencies:
   transparent_image: ^0.1.0
   path_provider: 0.4.1
   fluro: ^1.4.0
+  shared_preferences: ^0.5.1+1
 
 dev_dependencies:
   flutter_test:

@@ -103,15 +103,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-//    new CupertinoTabBar(
-//      items: getBottomNavItems(),
-//      currentIndex: _tabIndex,
-//      onTap: (index) {
-//        setState(() {
-//          _tabIndex = index;
-//        });
-//      },
-//    );
     initData();
     return new MaterialApp(
       theme: new ThemeData(primaryColor: const Color(0xFF63CA6C)),

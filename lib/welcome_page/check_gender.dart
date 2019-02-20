@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/main_page/main_page.dart';
 import 'package:flutter_app/route_config/application.dart';
+import 'package:flutter_app/utils/share_preferences_manager.dart';
+import 'package:flutter_app/utils/commen_tip.dart';
 
 class CheckGenderHome extends StatelessWidget {
   @override
@@ -54,8 +55,20 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
       if (maleIsClik && femaleIsClik) {
         return;
       }
+      _checkGender();
       Application.router.navigateTo(context, "/mainPage", clearStack: true);
     });
+  }
+
+  _checkGender() async {
+    var prefs = await SharePrefercencesManager.instance.getSharePre();
+    if (maleIsClik) {
+      prefs.setInt(CommenTip.shareSelectedGender, 1);
+      return;
+    }
+    if (femaleIsClik) {
+      prefs.setInt(CommenTip.shareSelectedGender, 2);
+    }
   }
 
 /*创建页面主体*/
@@ -94,7 +107,7 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: new RaisedButton(
-                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                       onPressed: _submit,
                       child: Center(
                         child: Padding(
@@ -140,12 +153,12 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
       case 1:
         name = '男生';
         icon = iconList[0];
-        selected=maleIsClik;
+        selected = maleIsClik;
         break;
       case 2:
         name = '女生';
         icon = iconList[1];
-        selected=femaleIsClik;
+        selected = femaleIsClik;
     }
     return new Column(
       children: <Widget>[

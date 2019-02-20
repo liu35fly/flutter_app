@@ -5,7 +5,6 @@ import 'package:transparent_image/transparent_image.dart';
 class BookShelfPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return new _BookShelfPageState();
   }
 }
