@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:transparent_image/transparent_image.dart';
 
+import 'package:flutter_app/data/book_shelf_top_data.dart';
+import 'package:flutter_app/main_page/book_shelf/book_shelf_top_group.dart';
+
 class BookShelfPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -10,21 +13,55 @@ class BookShelfPage extends StatefulWidget {
 }
 
 class _BookShelfPageState extends State<BookShelfPage> {
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//      appBar: new AppBar(
+//        centerTitle: true,
+//        title: new Text('书架'),
+//      ),
+//      body: GridView.count(
+//        crossAxisCount: 3,
+//        childAspectRatio: 0.7,
+//        primary: false,
+//        padding: const EdgeInsets.all(8.0),
+//        mainAxisSpacing: 8.0,
+//        crossAxisSpacing: 8.0,
+//        children: buildGridTitleList(5),
+//      ),
+//    );
+//  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        centerTitle: true,
-        title: new Text('书架'),
-      ),
-      body: GridView.count(
-        crossAxisCount: 3,
-        childAspectRatio:0.7,
-        primary: false,
-        padding: const EdgeInsets.all(8.0),
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        children: buildGridTitleList(5),
+        appBar: new AppBar(
+          centerTitle: true,
+          title: new Text('书架'),
+        ),
+        body: BookShelfTopGroup());
+  }
+
+  Widget buildTopGroup(List<BookShelfTopData> list) {
+    return Column(
+      children: <Widget>[],
+    );
+  }
+
+  Widget buildTopChildren(BookShelfTopData data) {
+    return GestureDetector(
+      child: Row(
+        children: <Widget>[
+          Image.network(
+            data.bookIconUrl,
+            width: 54.0,
+            height: 72.0,
+          ),
+          Text(data.bookName,
+              style: TextStyle(
+                fontSize: 13.0,
+                color: Color(0xff333333),
+              ))
+        ],
       ),
     );
   }

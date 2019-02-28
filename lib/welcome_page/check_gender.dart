@@ -60,7 +60,7 @@ class _CheckGenderPageState extends State<CheckGenderPage> {
     });
   }
 
-  _checkGender() async {
+  void _checkGender() async {
     var prefs = await SharePrefercencesManager.instance.getSharePre();
     if (maleIsClik) {
       prefs.setInt(CommenTip.shareSelectedGender, 1);
