@@ -21,5 +21,6 @@ class Routes {
     router.define(mainPage, handler: mainPageHandler);
     router.define(echargePage, handler: echargePageHandler);
     router.define(loginPage, handler: loginPageHandler);
+    router.define(detailPage, handler: detailPageHandler);
   }
 }

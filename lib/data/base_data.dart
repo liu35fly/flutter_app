@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_data.g.dart';
 
+// build命令   flutter packages pub run build_runner build
+
 @JsonSerializable()
 class BaseData {
   @JsonKey(name: 'code')

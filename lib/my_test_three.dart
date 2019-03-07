@@ -22,6 +22,8 @@ class MyLayoutApp extends StatelessWidget {
               ),
               new Text(
                 '2018-08-29',
+//                'dgitlhoyt345jgi9',
+//                '12gf-tgKhi-turfA'
                 style: new TextStyle(color: Colors.grey[500]),
               )
             ],

@@ -4,6 +4,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import 'package:flutter_app/data/book_shelf_top_data.dart';
 import 'package:flutter_app/main_page/book_shelf/book_shelf_top_group.dart';
+import 'package:flutter_app/main_page/book_store/book_store_week_group.dart';
 
 class BookShelfPage extends StatefulWidget {
   @override
@@ -38,7 +39,8 @@ class _BookShelfPageState extends State<BookShelfPage> {
           centerTitle: true,
           title: new Text('书架'),
         ),
-        body: BookShelfTopGroup());
+        body: WeekGroup());
+//    body: BookShelfTopGroup());
   }
 
   Widget buildTopGroup(List<BookShelfTopData> list) {
