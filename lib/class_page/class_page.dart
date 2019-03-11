@@ -19,6 +19,7 @@ class BookClassState extends State<BookClassPage> {
   @override
   void initState() {
     super.initState();
+    _getData();
   }
 
   @override
@@ -63,40 +64,73 @@ class BookClassState extends State<BookClassPage> {
   }
 
   Widget createIcons(BookClassData bookClassData) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Padding(
-          padding: const EdgeInsets.only(
-            left: 27.0,
-          ),
-          child: Text(
-            bookClassData.name,
-            style: TextStyle(fontSize: 16.0, color: Colors.black54),
-          )),
-      Padding(
-          padding: const EdgeInsets.only(top: 15.0, right: 27.0),
-          child: Align(
+    return Padding(
+        padding: const EdgeInsets.only(top: 15.0, right: 15.0, left: 15.0),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Padding(
+              padding: const EdgeInsets.only(right: 5.0),
+              child: SizedBox(
+                  width: 65.0,
+                  child: Text(
+                    bookClassData.name,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(fontSize: 16.0, color: Colors.black54),
+                  ))),
+          Align(
               alignment: AlignmentDirectional.topEnd,
               child: Container(
                   height: 50.0,
                   width: 65.0,
                   child: Stack(
                     alignment: AlignmentDirectional.topEnd,
-                    children: <Widget>[
-                      Container(
-                          alignment: Alignment.bottomLeft,
-                          child: Row(
-                            children: <Widget>[
-                              createIcon(bookClassData.icons[0], 32, 40),
-                              createIcon(bookClassData.icons[1], 32, 40)
-                            ],
-                          )),
-                      Container(
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: createIcon(bookClassData.icons[2], 32, 46))
-                    ],
-                  ))))
-    ]);
+                    children: createIconImages(bookClassData),
+                  )))
+        ]));
+  }
+
+  List<Widget> createIconImages(BookClassData bookClassData) {
+    List<Widget> list = [];
+    switch (bookClassData.iconList.length) {
+      case 0:
+        break;
+      case 1:
+        Widget content = Container(
+            alignment: Alignment.bottomLeft,
+            padding: const EdgeInsets.only(left: 16.0),
+            child: createIcon(bookClassData.iconList[0], 32, 46));
+        list.add(content);
+        break;
+      case 2:
+        Widget content = Container(
+            alignment: Alignment.bottomLeft,
+            child: Row(
+              children: <Widget>[
+                createIcon(bookClassData.iconList[0], 32, 40),
+                createIcon(bookClassData.iconList[1], 32, 40)
+              ],
+            ));
+        list.add(content);
+        break;
+      case 3:
+        Widget content1 = Container(
+            alignment: Alignment.bottomLeft,
+            child: Row(
+              children: <Widget>[
+                createIcon(bookClassData.iconList[0], 32, 40),
+                createIcon(bookClassData.iconList[1], 32, 40)
+              ],
+            ));
+        Widget content2 = Container(
+            alignment: Alignment.bottomLeft,
+            padding: const EdgeInsets.only(left: 16.0),
+            child: createIcon(bookClassData.iconList[2], 32, 46));
+        list.add(content1);
+        list.add(content2);
+        break;
+    }
+    return list;
   }
 
   Widget createIcon(String iconUrl, double width, double height) {
@@ -117,8 +151,7 @@ class BookClassState extends State<BookClassPage> {
   void _getData() async {
     Response response;
     Dio dio = new Dio();
-    response =
-        await dio.get("http://cc.kexigia.com/index/book/hotRecommendBook?res=");
+    response = await dio.get("http://172.29.222.1:8082/login/findAll");
 //    response = await dio.post("/test", data: {"id": 12, "name": "wendu"});
     print(response.data.toString());
 // 请求参数也可以通过对象传递，上面的代码等同于：

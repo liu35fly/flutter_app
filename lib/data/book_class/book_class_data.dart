@@ -19,10 +19,10 @@ class BookClassData{
   @JsonKey(name: 'name')
   String name;
 
-  @JsonKey(name: 'icons')
-  List<String> icons;
+  @JsonKey(name: 'iconList')
+  List<String> iconList;
 
-  BookClassData(this.id, this.name, this.icons);
+  BookClassData(this.id, this.name, this.iconList);
 
   factory BookClassData.fromJson(Map<String, dynamic> srcJson) =>
       _$BookClassDataFromJson(srcJson);
