@@ -31,7 +31,8 @@ class WeekGroupState extends State<WeekGroup> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+        color: Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: <Widget>[buildTopTip(), createGrideView()],
@@ -47,7 +48,15 @@ class WeekGroupState extends State<WeekGroup> {
           children: <Widget>[
             Align(
               alignment: Alignment.centerLeft,
-              child: Text('本周精选'),
+              child: Text(
+                '本周精选',
+                style: TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    decoration: TextDecoration.none,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.normal),
+              ),
             ),
             GestureDetector(
                 onTap: () {
@@ -55,7 +64,15 @@ class WeekGroupState extends State<WeekGroup> {
                 },
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Text('换一换'),
+                  child: Text(
+                    '换一换',
+                    style: TextStyle(
+                        color: Colors.black45,
+                        fontSize: 16.0,
+                        decoration: TextDecoration.none,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal),
+                  ),
                 ))
           ],
         ));
@@ -80,7 +97,7 @@ class WeekGroupState extends State<WeekGroup> {
       return listItem;
     }
     for (BookShelfTopData i in list) {
-      listItem.add(CommentItemV(context:context,data: i).createCommentItemV());
+      listItem.add(CommentItemV(context: context, data: i));
     }
     return listItem;
   }
@@ -201,8 +218,6 @@ class WeekGroupState extends State<WeekGroup> {
 //    setState(() {});
 //    });
   }
-
-
 
   void _getDatas() async {
     Response response;
