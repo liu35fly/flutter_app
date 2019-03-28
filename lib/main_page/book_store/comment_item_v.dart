@@ -10,7 +10,7 @@ class CommentItemV extends StatelessWidget {
   CommentItemV({Key key,this.context, this.data}) : super(key:key);
 
   Widget _createCommentItemV() {
-    return GestureDetector(
+    return  GestureDetector(
         onTap: () {
           _onClik(context, data.bookId);
         },

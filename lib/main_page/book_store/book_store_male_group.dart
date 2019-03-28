@@ -10,6 +10,10 @@ import 'package:flutter_app/utils/ase_utils.dart';
 import 'package:flutter_app/data/base_list_data.dart';
 
 class MaleGroup extends StatefulWidget {
+  final String name;
+
+  MaleGroup({Key key, this.name}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return MaleGroupState();
@@ -49,7 +53,7 @@ class MaleGroupState extends State<MaleGroup> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                '男生精选',
+                widget.name,
                 style: TextStyle(
                     color: Colors.black45,
                     fontSize: 16.0,
@@ -83,6 +87,7 @@ class MaleGroupState extends State<MaleGroup> {
       crossAxisCount: 4,
       shrinkWrap: true,
       childAspectRatio: 3 / 5,
+      controller: ScrollController(keepScrollOffset: false),
 //      padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
       mainAxisSpacing: 0.0,
       crossAxisSpacing: 0.0,
@@ -96,6 +101,7 @@ class MaleGroupState extends State<MaleGroup> {
       crossAxisCount: 2,
       shrinkWrap: true,
       childAspectRatio: 2 / 1,
+      controller: ScrollController(keepScrollOffset: false),
 //      padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
       mainAxisSpacing: 0.0,
       crossAxisSpacing: 0.0,

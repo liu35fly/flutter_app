@@ -6,7 +6,11 @@ import 'package:flutter_app/main_page/banner_view.dart';
 import 'package:flutter_app/detail_page/book_detail_page.dart';
 import 'package:flutter_app/rank_page/rank_page.dart';
 import 'package:flutter_app/search_page/search_page.dart';
-import 'dart:async';
+
+import 'package:flutter_app/main_page/book_store/book_store_banner_group.dart';
+import 'package:flutter_app/main_page/book_store/book_store_week_group.dart';
+import 'package:flutter_app/main_page/book_store/book_store_male_group.dart';
+import 'package:flutter_app/test/test_utils.dart';
 
 //class BookStorePage extends StatelessWidget {
 //  final parentContext;
@@ -522,19 +526,37 @@ class _BookStoreState extends State<BookStorePage>
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      row,
+//      row,
       Expanded(
           child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            new BannerWidget(list),
-            titles,
-            listOne,
-            listMale,
-            listFemale
+            BannerPage(listBanner: (new TestUtils()).createBannerDatas()),
+            WeekGroup(),
+            MaleGroup(
+              name: '男生精选',
+            ),
+            MaleGroup(
+              name: '女生精选',
+            )
           ],
         ),
       ))
     ]);
+//    return Column(children: <Widget>[
+//      row,
+//      Expanded(
+//          child: SingleChildScrollView(
+//            child: Column(
+//              children: <Widget>[
+//                new BannerWidget(list),
+//                titles,
+//                listOne,
+//                listMale,
+//                listFemale
+//              ],
+//            ),
+//          ))
+//    ]);
   }
 }

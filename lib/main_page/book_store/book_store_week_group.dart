@@ -42,7 +42,7 @@ class WeekGroupState extends State<WeekGroup> {
 
   Widget buildTopTip() {
     return Container(
-        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        padding: const EdgeInsets.only(top: 10.0, bottom: 0.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -79,16 +79,17 @@ class WeekGroupState extends State<WeekGroup> {
   }
 
   Widget createGrideView() {
-    return GridView.count(
-      crossAxisCount: 4,
-      shrinkWrap: true,
-      childAspectRatio: 3 / 5,
+    return  GridView.count(
+          crossAxisCount: 4,
+          shrinkWrap: true,
+          childAspectRatio: 3 / 5,
+          controller: ScrollController(keepScrollOffset: false),
 //      padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
-      mainAxisSpacing: 0.0,
-      crossAxisSpacing: 0.0,
-      scrollDirection: Axis.vertical,
-      children: _createListItem(),
-    );
+          mainAxisSpacing: 0.0,
+          crossAxisSpacing: 0.0,
+          scrollDirection: Axis.vertical,
+          children: _createListItem(),
+        );
   }
 
   List<Widget> _createListItem() {

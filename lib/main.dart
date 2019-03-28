@@ -7,8 +7,8 @@ import 'package:flutter_app/class_page/class_page.dart';
 
 void main() => runApp(new MaterialApp(
     title: '我的测试',
-//      home: new SplashPage(),
+      home: new SplashPage(),
 //    home: WeekGroup()
 //    home: BookClassPage()
-    home: MaleGroup()
+//    home: MaleGroup()
 ));

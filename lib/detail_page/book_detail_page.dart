@@ -13,9 +13,9 @@ class BookDetailPage extends StatefulWidget {
 
 //  BookDetailPage({Key key, @required this.data}) : super(key: key);
 
-  BookDetailPage({String bookId="0"}) : this.bookId=bookId;
-
   final String bookId;
+
+  BookDetailPage({Key key, this.bookId}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -116,10 +116,10 @@ class BookDetailHome extends State<BookDetailPage> {
 
   var tip2 = RichText(
       text: TextSpan(
-    style: TextStyle(color: Colors.grey),
-    text:
+        style: TextStyle(color: Colors.grey),
+        text:
         '&nbsp;&nbsp;&nbsp;&nbsp;和班主任整整聊了三节晚自习，一直到放学回家，我都还没有从震惊和激动的情绪中缓和过来，脑子里全是班主任那性感撩人的模样，一晚上都没睡着。<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;第二天早上，毫无悬念的迟到了，早读开始了我才到学校，一进教室，全班同学都在盯着我看，弄的我特别尴尬。<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;我在心里下定决心，一定要改变自己，不能让别人看不起我！<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;上午第一节课是语文课，上课铃声刚一响起，班主任颜如玉就拿着教材，踩着高跟鞋哒哒哒的从外面走了进来。<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;她今天穿着一条黑色的七分裤，搭配着白色的衬衫，身材高挑性感，美腿笔直修长，浑身散发着女神气质。<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;我看到班主任那冰山女神的样子，不禁想起昨晚上她发给我的那两张自拍照，心头又是一阵火热。<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;班主任走进教室，放下教材就说道：“上课之前，同学们先把昨天我布置的作业拿出来放到桌子上，我现在要检查！”<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;她的话音刚落，我的脑袋里面瞬间嗡的一声，有种大事不妙的感觉。<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;昨晚上一直在和班主任聊微信，她布置的作业我压根就没做，万万没想到，她竟然会在这个时候抽查作业！<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;',
-  ));
+      ));
 
   var tip3 = Padding(
       padding: const EdgeInsets.only(top: 20.0, bottom: 14.0),
@@ -185,7 +185,7 @@ class BookDetailHome extends State<BookDetailPage> {
 
   //buildListTile相当于ListView的Adapter
   Widget buildListTile(int i) {
-    return Padding(padding: const EdgeInsets.all(5.0),child: Column(
+    return Padding(padding: const EdgeInsets.all(5.0), child: Column(
       children: <Widget>[
         Image.asset(
           'images/main_icon/icon_demo.jpg',

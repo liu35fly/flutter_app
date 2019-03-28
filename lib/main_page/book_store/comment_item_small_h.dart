@@ -21,20 +21,42 @@ class CommentItemH extends StatelessWidget {
               width: 42.0,
               height: 56.0,
             ),
-            Column(
-              children: <Widget>[
-                Text(
-                  data.bookName,
-                  style: TextStyle(fontSize: 10.0, color: Colors.black45),
-                ),
-                Text(
-                  data.bookAuthor,
-                  style: TextStyle(fontSize: 8.0, color: Colors.black26),
-                )
-              ],
-            )
+            Container(
+                width: 120.0,
+                padding: const EdgeInsets.only(
+                    left: 15.0, top: 15.0, right: 15.0),
+                child: Column(
+//                      mainAxisSize: MainAxisSize.max,
+//                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment:CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      data.bookName,
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.black45,
+                          decoration: TextDecoration.none,
+                          fontWeight: FontWeight.normal),
+                    ),
+                    Text(
+                      data.bookAuthor,
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 10.0,
+                        color: Colors.black26,
+                        decoration: TextDecoration.none,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    )
+                  ],
+                ))
           ],
-        ));
+        )
+    );
   }
 
   void _onClik(BuildContext context, int bookId) {
